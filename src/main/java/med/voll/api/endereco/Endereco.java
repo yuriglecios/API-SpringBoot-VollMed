@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Endereco {
-    
+
     private String logradouro;
     private String numero;
     private String complemento;
@@ -20,6 +20,16 @@ public class Endereco {
     private String cep;
 
     public Endereco(DadosEnderecoMedico dados) {
+        this.logradouro = dados.logradouro();
+        this.numero = dados.numero();
+        this.complemento = dados.complemento();
+        this.bairro = dados.bairro();
+        this.cidade = dados.cidade();
+        this.uf = dados.uf();
+        this.cep = dados.cep();
+    }
+
+    public Endereco(DadosEnderecoPaciente dados) {
         this.logradouro = dados.logradouro();
         this.numero = dados.numero();
         this.complemento = dados.complemento();
