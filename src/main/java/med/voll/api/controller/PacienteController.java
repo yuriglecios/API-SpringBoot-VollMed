@@ -3,7 +3,7 @@ package med.voll.api.controller;
 import jakarta.validation.Valid;
 import med.voll.api.domain.medico.DadosDetalhamentoMedico;
 import med.voll.api.domain.paciente.*;
-import med.voll.api.paciente.DadosDetalhamentoPaciente;
+import med.voll.api.domain.paciente.DadosDetalhamentoPaciente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,8 +30,9 @@ public class PacienteController {
     }
     @PutMapping
     @Transactional
-    public Page<DadosListagemPaciente> listarPaciente(@PageableDefault(size = 10, sort = "nome")Pageable paginacao){
-       return pacienteRepository.findAll(paginacao).map(DadosListagemPaciente::new);
+    public ResponseEntity<Page<DadosListagemPaciente>>  listarPaciente(@PageableDefault(size = 10, sort = "nome")Pageable paginacao){
+       var page = pacienteRepository.findAll(paginacao).map(DadosListagemPaciente::new);
+       return ResponseEntity.ok(page);
     }
 
 }
